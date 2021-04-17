@@ -13,8 +13,8 @@ La idea del directorio `todos` es que en caso de que se quiera crear un servicio
 La estructura actual del repositorio sería la siguiente:
 
 ```
-├── package.json
-├── pipeline
+├── package.json (APARTADO A)
+├── pipeline (APARTADO B)
 │   ├── ENABLE-UNIR-CREDENTIALS
 │   │   └── Jenkinsfile
 │   ├── PIPELINE-FULL-CD
@@ -24,8 +24,8 @@ La estructura actual del repositorio sería la siguiente:
 │   └── PIPELINE-FULL-STAGING
 │       └── Jenkinsfile
 ├── README.md
-├── serverless.yml
-├── terraform
+├── serverless.yml (APARTADO A)
+├── terraform (APARTADO B)
 │   ├── configure_environment.sh
 │   ├── main.tf
 │   ├── outputs.tf
