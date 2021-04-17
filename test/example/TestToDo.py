@@ -4,7 +4,7 @@ import unittest
 import boto3
 from moto import mock_dynamodb2
 import sys
-sys.path.insert(1, '../todos/')
+sys.path.insert(1, '../../todos/')
 
 
 @mock_dynamodb2

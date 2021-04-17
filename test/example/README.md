@@ -4,21 +4,22 @@ En este directorio se disponibilizan una serie de métodos de acceso a la base d
 Dichas pruebas unitarias ejecutan contra la librería moto y contra una imagen de docker de DynamoDB levantada en un contexto local.
 
 Para poder llevarlas a cabo se han de cumplir los siguientes requisitos:
- * Librerías
-    * Python3.7
-    * moto 
-    * boto3
- * Imagen de Docker
-    * DynamoDB oficial de AWS. 
- 
 
-
+* Librerías
+  * Python3.8
+  * moto
+  * boto3
+* Imagen de Docker
+  * DynamoDB oficial de AWS.
 
 Pasos para ejecutar DynamoDB en local
+
 ```
 docker run -p 8000:8000 amazon/dynamodb-local
 ```
+
 Pasos para ejecutar las pruebas
+
 ```
 test$ coverage run -m TestToDo
 One or more parameter values are not valid. The AttributeValue for a key attribute cannot contain an empty string value. Key: id
@@ -49,9 +50,11 @@ TOTAL                  208     14    93%
 ```
 
 # TODO
-El alumno deberá de incluir en este directorio un nuevo fichero de pruebas unitarias para la clase que se especifica desarrollar, usando como base las funciones python aquí desarrolladas y las pruebas que se ofrecen a modo de ejemplo. El esqueleto de la clase se encuentra disponible en [todos/todoTable.py](../todos/todoTable.py)
+
+El alumno deberá de incluir en este directorio un nuevo fichero de pruebas unitarias para la clase que se especifica desarrollar, usando como base las funciones python aquí desarrolladas y las pruebas que se ofrecen a modo de ejemplo. El esqueleto de la clase se encuentra disponible en [todos/todoTableClass.py](../todos/todoTableClass.py)
 
 El fichero de pruebas se denominará:
+
 ```
-TestToDoClass.py
+TestToDoTableClass.py
 ```
