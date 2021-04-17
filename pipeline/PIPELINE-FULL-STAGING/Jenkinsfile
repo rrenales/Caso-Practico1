@@ -10,12 +10,12 @@
         // }
         stage('Stage 1: Setup'){
             steps{
-                    sh "bash pipeline/PIPELINE-FULL-STAGING/1-setup.sh"      
+                    sh 'bash pipeline/PIPELINE-FULL-STAGING/1-setup.sh'  
             }
         }
         stage('Stage 2: Testing'){
             steps{
-                    sh "bash pipeline/PIPELINE-FULL-STAGING/2-testing.sh"
+                    sh 'bash pipeline/PIPELINE-FULL-STAGING/2-testing.sh'
             }
         }
         stage('Stage 3: Build'){
