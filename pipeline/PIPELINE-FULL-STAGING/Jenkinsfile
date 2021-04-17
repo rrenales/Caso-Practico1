@@ -41,9 +41,9 @@
         }
     }
     post {
-        always{
-            sh "docker rm -f dynamodb"
-        }
+        // always{
+        //     sh "docker rm -f dynamodb"
+        // }
         failure {
             echo 'Bad news!!'
             //deleteDir()
