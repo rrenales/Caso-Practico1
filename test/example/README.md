@@ -5,13 +5,20 @@ Dichas pruebas unitarias ejecutan contra la librería moto y contra una imagen d
 
 Para poder llevarlas a cabo se han de cumplir los siguientes requisitos:
 
+
 * Librerías
   * Python3.8
-  * moto
-  * boto3
-  * coverage
+  * boto3==1.16.35
+  * moto==1.3.14
+  * mock==4.0.3
+  * coverage==5.5
+
+
 * Imagen de Docker
+
   * DynamoDB oficial de AWS.
+
+
 
 Pasos para ejecutar DynamoDB en local
 
