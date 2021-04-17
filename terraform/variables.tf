@@ -3,7 +3,7 @@ variable "ami_id" {
 }
 
 variable "myip" {
-  description = "A continuación indicar la IP desde donde se va a conectar al servidor web y la instancia ec2"
+  description = "A continuación indicar la IP desde donde se va a conectar al servidor web y la instancia ec2. Revisar en https://www.cualesmiip.com/"
 }
 
 variable "instance_type" {

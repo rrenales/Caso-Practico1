@@ -8,7 +8,9 @@ unzip terraform_0.14.3_linux_amd64.zip
 # remove terraform zip
 rm -f terraform_0.14.3_linux_amd64.zip
 
+# Set permissions properly
 chmod +x terraform
+chmod +x resources/get-ssh-key.sh
 # terraform init
 ./terraform init
 # terraform validate
