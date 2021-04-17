@@ -136,3 +136,4 @@ terraform/terraform.tfstate
 terraform/terraform
 terraform/terraform.tfstate.backup
 terraform/.terraform
+node_modules

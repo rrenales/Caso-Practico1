@@ -1,6 +1,7 @@
-service: serverless-rest-api-with-dynamodb
+app: todo-list-serverless
+service: api-rest
 
-frameworkVersion: ">=1.1.0"
+frameworkVersion: ">=1.1.0 <=2.1.1"
 
 provider:
   name: aws
