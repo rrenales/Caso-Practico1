@@ -9,6 +9,7 @@ Para poder llevarlas a cabo se han de cumplir los siguientes requisitos:
   * Python3.8
   * moto
   * boto3
+  * coverage
 * Imagen de Docker
   * DynamoDB oficial de AWS.
 
