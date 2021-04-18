@@ -1,7 +1,7 @@
 app: todo-list-serverless
 service: api-rest
 
-frameworkVersion: ">=1.1.0 <=2.1.1"
+frameworkVersion: ">=1.1.0"
 
 provider:
   name: aws
