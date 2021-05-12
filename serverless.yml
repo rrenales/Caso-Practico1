@@ -1,3 +1,4 @@
+org: evers072
 app: todo-list-serverless
 service: api-rest
 
@@ -25,6 +26,7 @@ functions:
     events:
       - http:
           path: todos
+          #method: post
           method: post
           #cors: true
           cors: true
