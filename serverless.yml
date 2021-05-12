@@ -33,7 +33,6 @@ functions:
     events:
       - http:
           path: todos
-          #method: get
           method: get
           cors: true
 
