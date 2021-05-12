@@ -35,6 +35,7 @@ functions:
           path: todos
           method: get
           cors: true
+          #cors: true
 
   get:
     handler: todos/get.get
