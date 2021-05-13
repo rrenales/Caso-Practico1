@@ -1,24 +1,7 @@
-import os
-import json
-
-from todos import decimalencoder
 import boto3
-dynamodb = boto3.resource('dynamodb')
 
-
-def get(event, context):
-    table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
-
-    # fetch todo from the database
-    result = table.get_item(
-        Key={
-            'id': event['pathParameters']['id']
-        }
-    )
-
-
-
-client = boto3.client('translate', region_name="us-east-1")
-text = "Hola mi "
-client.translate_text(Text=text, SourceLanguageCode="auto", 
+client = boto3.client('translate', region_name="us-eat-1")
+text = "Hola soc el ruben"
+result = client.translate_text(Text=text, SourceLanguageCode="auto",
     TargetLanguageCode="en")
+print(result['TranslatedText'])
