@@ -1,82 +1,24 @@
-import logging
-import json
-import boto3
 import os
+import json
 
-translate = boto3.client('translate')
-dynamodb = boto3.client('dynamodb')
-firehose = boto3.client('firehose')
+from todos import decimalencoder
+import boto3
+dynamodb = boto3.resource('dynamodb')
 
-TABLE_NAME = os.getenv('TABLE_NAME')
 
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
+def get(event, context):
+    table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
 
-def lambda_handler(event, context):
+    # fetch todo from the database
+    result = table.get_item(
+        Key={
+            'id': event['pathParameters']['id']
+        }
+    )
 
-    logger.info(event)
 
-    if 'source_language' in event and 'target_language' in event and 'review' in event and 'review_id' in event:
-        review_id = event['review_id']
-        source_language = event['source_language']
-        target_language = event['target_language']
-        review = event['review']
 
-        try:
-            # The Lambda function queries the Amazon DynamoDB table to check whether 
-            # the review has already been translated. If the translated review 
-            # is already stored in Amazon DynamoDB, the function returns it.
-            response = dynamodb.get_item(
-                TableName=TABLE_NAME,
-                Key={
-                    'review_id': {
-                        'N': review_id,
-                    },
-                    'language': {
-                        'S': target_language,
-                    },
-                }
-            )
-            logger.info(response)
-            if 'Item' in response:
-                return response['Item']['review']['S']
-        except Exception as e:
-            logger.error(response)
-            raise Exception("[ErrorMessage]: " + str(e))
-
-        try:
-            # The Lambda function calls the TranslateText operation and passes the 
-            # review, the source language, and the target language to get the 
-            # translated review. 
-            result = translate.translate_text(Text=review, SourceLanguageCode=source_language, TargetLanguageCode=target_language)
-            logging.info("Translation output: " + str(result))
-        except Exception as e:
-            logger.error(response)
-            raise Exception("[ErrorMessage]: " + str(e))
-
-        try:
-            # After the review is translated, the function stores it using
-            # the Amazon DynamoDB putItem operation. Subsequent requests
-            # for this translated review are returned from Amazon DynamoDB.
-            response = dynamodb.put_item(
-            TableName=TABLE_NAME,
-            Item={
-                'review_id': {
-                    'N': review_id,
-                },
-                'language': {
-                    'S': target_language,
-                },
-                'review': {
-                    'S': result.get('TranslatedText')
-                }
-                }
-            )
-            logger.info(response)
-        except Exception as e:
-                logger.error(e)
-                raise Exception("[ErrorMessage]: " + str(e))
-        return result.get('TranslatedText')
-    else:
-        logger.error(e)
-        raise Exception("[ErrorMessage]: Invalid input ")
+client = boto3.client('translate', region_name="us-east-1")
+text = "Hola mi "
+client.translate_text(Text=text, SourceLanguageCode="auto", 
+    TargetLanguageCode="en")
