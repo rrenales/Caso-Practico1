@@ -15,9 +15,9 @@ def translate(event, context):
     )
     
     
-    result = client.translate_text(Text=text, SourceLanguageCode="auto",
+    resultTranslate = client.translate_text(Text=result[‘Item’][‘text’], SourceLanguageCode="auto",
         TargetLanguageCode=target_language)
-    print(result['TranslatedText'])
-      
-    return result
+    print(resultTranslate['Item']['text'])
+    
+    return response
     
