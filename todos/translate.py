@@ -1,6 +1,9 @@
 import boto3
 import logging
 def translate(event, context):
+    client = boto3.client('translate', region_name="us-eat-1")
+
+    
     target_language = event['pathParameters']['target_lang']
     text_id = event['pathParameters']['id']
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
