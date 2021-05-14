@@ -12,5 +12,5 @@ def translate(event, context):
         raise Exception("Couldn't read the target language")
     text = "Hola soc el ruben"
     result = client.translate_text(Text=text, SourceLanguageCode="auto",
-        TargetLanguageCode="en")
+        TargetLanguageCode=target_language)
     print(result['TranslatedText'])
