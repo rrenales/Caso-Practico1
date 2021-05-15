@@ -1,5 +1,7 @@
 import boto3
 import logging
+
+dynamodb = boto3.resource('dynamodb')
 def translate(event, context):
     client = boto3.client('translate', region_name="us-east-1")
     
@@ -15,9 +17,9 @@ def translate(event, context):
     )
     
     
-    resultTranslate = client.translate_text(Text=result['Item']['text'], SourceLanguageCode="auto",
+    resultTranslate = client.translate_text(Text=resultTranslate['Item']['text'], SourceLanguageCode="auto",
         TargetLanguageCode=target_language)
     print(resultTranslate['Translatedtext'])
     
-    return response
+    #return response
     
