@@ -1,7 +1,7 @@
 import boto3
 import logging
 def translate(event, context):
-    client = boto3.client('translate', region_name="us-eat-1")
+    client = boto3.client('translate', region_name="us-east-1")
     
     target_language = event['pathParameters']['target_lang']
     text_id = event['pathParameters']['id']
@@ -17,7 +17,7 @@ def translate(event, context):
     
     resultTranslate = client.translate_text(Text=result[‘Item’][‘text’], SourceLanguageCode="auto",
         TargetLanguageCode=target_language)
-    print(resultTranslate['Item']['text'])
+    print(resultTranslate['Translatedtext'])
     
     return response
     
