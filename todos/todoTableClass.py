@@ -48,17 +48,65 @@ class todoTable(object):
         table = self.dynamodb.Table(self.tableName)
         table.delete()
 
-    def put_todo(self, text, id=None):
-"""  A completar por el alumno. Pista: todos/ToDoPutItem.py """
+    def put_todo(self,data, timestamp):
+        #table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
+    
+        item = {
+            'id': str(uuid.uuid1()),
+            'text': data['text'],
+            'checked': False,
+            'createdAt': timestamp,
+            'updatedAt': timestamp,
+        }
 
-    def get_todo(self, id):
-"""  A completar por el alumno. Pista: todos/ToDoGetItem.py """
+         # write the todo to the database
+        table.put_item(Item=item)
+        return item
 
+
+    def get_todo(self,id):
+        #table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
+        result = table.get_item(
+            Key={
+                'id': event['pathParameters']['id']
+            }
+    )
+        return result
+    
     def scan_todo(self):
-"""  A completar por el alumno. Pista: todos/ToDoListItems.py """
-
+        #table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
+        # fetch all todos from the database
+        scan = table.scan()
+        return result
+        
     def update_todo(self, text, id, checked):
-"""  A completar por el alumno. Pista: todos/ToDoUpdateItem.py """
-
+        timestamp = int(time.time() * 1000)
+         # update the todo in the database
+        result = table.update_item(
+            Key={
+                'id': event['pathParameters']['id']
+            },
+            ExpressionAttributeNames={
+              '#todo_text': 'text',
+            },
+            ExpressionAttributeValues={
+              ':text': data['text'],
+              ':checked': data['checked'],
+              ':updatedAt': timestamp,
+            },
+            UpdateExpression='SET #todo_text = :text, '
+                             'checked = :checked, '
+                             'updatedAt = :updatedAt',
+            ReturnValues='ALL_NEW',
+        )
+        return result
+        
     def delete_todo(self, id):
-"""  A completar por el alumno. Pista: todos/ToDoDeleteItem.py """
+        
+        # delete the todo from the database
+        table.delete_item(
+            Key={
+                'id': event['pathParameters']['id']
+            }
+        )
+

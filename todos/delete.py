@@ -1,19 +1,12 @@
 import os
 
 import boto3
-dynamodb = boto3.resource('dynamodb')
-
+#dynamodb = boto3.resource('dynamodb')
+from .todoTableClass import delete_todo
 
 def delete(event, context):
-    table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
-
-    # delete the todo from the database
-    table.delete_item(
-        Key={
-            'id': event['pathParameters']['id']
-        }
-    )
-
+    response =  delete_todo('id')
+     
     # create a response
     response = {
         "statusCode": 200

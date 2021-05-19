@@ -3,18 +3,13 @@ import json
 
 from todos import decimalencoder
 import boto3
-dynamodb = boto3.resource('dynamodb')
-
+#dynamodb = boto3.resource('dynamodb')
+from .todoTableClass import get_todo
 
 def get(event, context):
-    table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
 
-    # fetch todo from the database
-    result = table.get_item(
-        Key={
-            'id': event['pathParameters']['id']
-        }
-    )
+    # Llamamos a todo get_todo para listar en la dynamo db.
+    result = get_todo('id')
 
     # create a response
     response = {

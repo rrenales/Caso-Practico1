@@ -5,8 +5,8 @@ import os
 
 from todos import decimalencoder
 import boto3
-dynamodb = boto3.resource('dynamodb')
-
+#dynamodb = boto3.resource('dynamodb')
+from .todoTableClass import update_todo
 
 def update(event, context):
     data = json.loads(event['body'])
@@ -14,30 +14,8 @@ def update(event, context):
         logging.error("Validation Failed")
         raise Exception("Couldn't update the todo item.")
         return
-
-    timestamp = int(time.time() * 1000)
-
-    table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
-
-    # update the todo in the database
-    result = table.update_item(
-        Key={
-            'id': event['pathParameters']['id']
-        },
-        ExpressionAttributeNames={
-          '#todo_text': 'text',
-        },
-        ExpressionAttributeValues={
-          ':text': data['text'],
-          ':checked': data['checked'],
-          ':updatedAt': timestamp,
-        },
-        UpdateExpression='SET #todo_text = :text, '
-                         'checked = :checked, '
-                         'updatedAt = :updatedAt',
-        ReturnValues='ALL_NEW',
-    )
-
+    
+    result = update_todo('text', 'id', 'checked')
     # create a response
     response = {
         "statusCode": 200,
